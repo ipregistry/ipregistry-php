@@ -148,8 +148,13 @@ jobs:
             echo "::warning::PACKAGIST_USERNAME / PACKAGIST_API_TOKEN not set; relying on the Packagist GitHub webhook to pick up the release."
             exit 0
           fi
-          curl -sS -X POST \
+          response="$(curl -sS -X POST \
             "https://packagist.org/api/update-package?username=${PACKAGIST_USERNAME}&apiToken=${PACKAGIST_API_TOKEN}" \
             -H 'Content-Type: application/json' \
-            -d "{\"repository\":{\"url\":\"${{ github.server_url }}/${{ github.repository }}\"}}" \
-            || echo "::warning::Packagist notification failed; the webhook will still update the package."
+            -d "{\"repository\":{\"url\":\"${{ github.server_url }}/${{ github.repository }}\"}}")" \
+            || { echo "::warning::Packagist notification failed; the webhook will still update the package."; exit 0; }
+          echo "$response"
+          case "$response" in
+            *'"status":"success"'*) echo "Packagist notified." ;;
+            *) echo "::warning::Packagist did not accept the update: $response" ;;
+          esac
