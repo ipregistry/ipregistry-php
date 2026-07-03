@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         cacheDirectory=".phpunit.cache"
+         colors="true"
+         defaultTestSuite="default"
+         failOnWarning="true"
+         failOnDeprecation="true"
+         failOnNotice="true"
+         displayDetailsOnTestsThatTriggerDeprecations="true"
+         displayDetailsOnTestsThatTriggerWarnings="true"
+         displayDetailsOnTestsThatTriggerNotices="true">
+    <testsuites>
+        <!-- Offline unit and behavior tests: no API key or network required. -->
+        <testsuite name="default">
+            <directory>tests/Unit</directory>
+            <directory>tests/Behavior</directory>
+        </testsuite>
+        <!-- Live system tests: require IPREGISTRY_API_KEY and consume credits. -->
+        <testsuite name="system">
+            <directory>tests/System</directory>
+        </testsuite>
+    </testsuites>
+    <source>
+        <include>
+            <directory>src</directory>
+        </include>
+    </source>
+</phpunit>

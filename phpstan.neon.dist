@@ -1,0 +1,10 @@
+parameters:
+    level: max
+    treatPhpDocTypesAsCertain: false
+    paths:
+        - src
+        - tests
+        - examples
+    excludePaths:
+        # Standalone router script for the built-in test server, not library code.
+        - tests/Fixtures/api-server.php

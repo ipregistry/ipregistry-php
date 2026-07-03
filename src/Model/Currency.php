@@ -1,0 +1,56 @@
+<?php
+
+declare(strict_types=1);
+
+/*
+ * Copyright 2019 Ipregistry (https://ipregistry.co).
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+namespace Ipregistry\Model;
+
+/**
+ * Currency information for the location of an IP address.
+ */
+final readonly class Currency
+{
+    public function __construct(
+        public string $code = '',
+        public string $name = '',
+        public string $nameNative = '',
+        public string $plural = '',
+        public string $pluralNative = '',
+        public string $symbol = '',
+        public string $symbolNative = '',
+        public CurrencyFormat $format = new CurrencyFormat(),
+    ) {
+    }
+
+    /**
+     * @param array<array-key, mixed> $data
+     */
+    public static function fromArray(array $data): self
+    {
+        return new self(
+            code: Hydrator::str($data, 'code'),
+            name: Hydrator::str($data, 'name'),
+            nameNative: Hydrator::str($data, 'name_native'),
+            plural: Hydrator::str($data, 'plural'),
+            pluralNative: Hydrator::str($data, 'plural_native'),
+            symbol: Hydrator::str($data, 'symbol'),
+            symbolNative: Hydrator::str($data, 'symbol_native'),
+            format: CurrencyFormat::fromArray(Hydrator::arr($data, 'format')),
+        );
+    }
+}

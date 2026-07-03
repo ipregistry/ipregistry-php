@@ -1,0 +1,71 @@
+{
+    "name": "ipregistry/ipregistry-php",
+    "description": "Official PHP client library for the Ipregistry IP geolocation and threat data API.",
+    "license": "Apache-2.0",
+    "type": "library",
+    "keywords": [
+        "ipregistry",
+        "ip",
+        "geolocation",
+        "geoip",
+        "ip-address",
+        "ip-geolocation",
+        "ip-data",
+        "threat-data",
+        "vpn-detection",
+        "proxy-detection",
+        "user-agent"
+    ],
+    "homepage": "https://ipregistry.co",
+    "support": {
+        "issues": "https://github.com/ipregistry/ipregistry-php/issues",
+        "source": "https://github.com/ipregistry/ipregistry-php",
+        "docs": "https://ipregistry.co/docs",
+        "email": "support@ipregistry.co"
+    },
+    "require": {
+        "php": ">=8.2",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "psr/simple-cache": "^2.0 || ^3.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.68",
+        "guzzlehttp/psr7": "^2.7",
+        "phpstan/phpstan": "^2.1",
+        "phpunit/phpunit": "^11.5 || ^12.0 || ^13.0",
+        "psr/http-client": "^1.0.2",
+        "psr/http-factory": "^1.1"
+    },
+    "suggest": {
+        "psr/http-client": "To send requests through any PSR-18 HTTP client via Psr18Transport",
+        "psr/http-factory": "Required alongside psr/http-client to use Psr18Transport"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ipregistry\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Ipregistry\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "scripts": {
+        "cs": "php-cs-fixer fix --dry-run --diff",
+        "cs-fix": "php-cs-fixer fix",
+        "stan": "phpstan analyse",
+        "test": "phpunit",
+        "test-system": "phpunit --testsuite system"
+    },
+    "scripts-descriptions": {
+        "cs": "Check coding style without modifying files",
+        "cs-fix": "Fix coding style issues",
+        "stan": "Run static analysis",
+        "test": "Run offline unit and behavior tests",
+        "test-system": "Run live system tests (requires IPREGISTRY_API_KEY; consumes credits)"
+    }
+}
