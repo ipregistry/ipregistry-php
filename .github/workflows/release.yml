@@ -1,6 +1,6 @@
 name: Release
 
-# Manually triggered full release: validates the version, runs the test gate,
+# Manually triggered full release (Actions > Release > Run workflow): validates the version, runs the test gate,
 # creates the vX.Y.Z tag, publishes a GitHub Release whose notes are taken
 # from the matching section of CHANGELOG.md, and notifies Packagist.
 #

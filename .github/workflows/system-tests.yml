@@ -1,7 +1,8 @@
 name: System Tests
 
 # System tests exercise the live Ipregistry API and consume credits, so they do
-# not run on every push. They run on demand and on a weekly schedule.
+# not run on every push. They run on demand (Actions > System Tests > Run workflow)
+# and on a weekly schedule.
 #
 # Requires a repository secret named IPREGISTRY_API_KEY. When it is absent (for
 # example on a fork), the tests skip cleanly and the job still succeeds.
