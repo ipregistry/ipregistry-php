@@ -43,6 +43,7 @@ final class ModelsTest extends TestCase
             'connection' => [
                 'asn' => 15169,
                 'domain' => 'google.com',
+                'is_anycast' => true,
                 'organization' => 'Google LLC',
                 'route' => '8.8.8.0/24',
                 'type' => 'hosting',
@@ -98,6 +99,7 @@ final class ModelsTest extends TestCase
         self::assertSame('AT&T', $info->carrier->name);
         self::assertSame(CompanyType::Business, $info->company->type);
         self::assertSame(15169, $info->connection->asn);
+        self::assertTrue($info->connection->isAnycast);
         self::assertSame(ConnectionType::Hosting, $info->connection->type);
         self::assertSame('USD', $info->currency->code);
         self::assertSame('-$', $info->currency->format->negative->prefix);
@@ -122,6 +124,7 @@ final class ModelsTest extends TestCase
         self::assertSame('', $info->ip);
         self::assertSame(IpType::Unknown, $info->type);
         self::assertNull($info->connection->asn);
+        self::assertFalse($info->connection->isAnycast);
         self::assertNull($info->company->type);
         self::assertNull($info->location->latitude);
         self::assertSame('', $info->location->country->flag->emoji);

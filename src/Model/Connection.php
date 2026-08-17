@@ -31,6 +31,8 @@ final readonly class Connection
         /** The Autonomous System Number, or null when unknown. */
         public ?int $asn = null,
         public string $domain = '',
+        /** Whether the IP address is announced via anycast, i.e. simultaneously from multiple locations. */
+        public bool $isAnycast = false,
         public string $organization = '',
         public string $route = '',
         /** The connection classification, or null when unknown. */
@@ -46,6 +48,7 @@ final readonly class Connection
         return new self(
             asn: Hydrator::intOrNull($data, 'asn'),
             domain: Hydrator::str($data, 'domain'),
+            isAnycast: Hydrator::bool($data, 'is_anycast'),
             organization: Hydrator::str($data, 'organization'),
             route: Hydrator::str($data, 'route'),
             type: ConnectionType::tryFrom(Hydrator::str($data, 'type')),
