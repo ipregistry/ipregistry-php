@@ -50,7 +50,7 @@ use Psr\SimpleCache\CacheInterface;
 final class IpregistryClient
 {
     /** The released version of the client library. */
-    public const VERSION = '1.0.0';
+    public const VERSION = '1.1.0';
 
     /** The base URL of the Ipregistry API used unless overridden. */
     public const DEFAULT_BASE_URL = 'https://api.ipregistry.co';
