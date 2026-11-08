@@ -46,6 +46,10 @@ final class CurlTransport implements TransportInterface
 
     public function request(string $method, string $url, array $headers, ?string $body, float $timeout): TransportResponse
     {
+        if ('' === $method || '' === $url) {
+            throw new ClientException('request method and URL must not be empty');
+        }
+
         $handle = $this->handle();
 
         $headerLines = [];

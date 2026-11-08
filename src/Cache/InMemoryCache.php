@@ -71,6 +71,11 @@ final class InMemoryCache implements CacheInterface
         $this->clock = $clock ?? static fn (): float => microtime(true);
     }
 
+    /**
+     * Entries expire with time and reads refresh their recency: two reads of a key can differ.
+     *
+     * @phpstan-impure
+     */
     public function get(string $key, mixed $default = null): mixed
     {
         self::validateKey($key);
@@ -173,6 +178,11 @@ final class InMemoryCache implements CacheInterface
         return true;
     }
 
+    /**
+     * Entries expire with time and reads refresh their recency: two reads of a key can differ.
+     *
+     * @phpstan-impure
+     */
     public function has(string $key): bool
     {
         return $this->get($key, $this) !== $this;
