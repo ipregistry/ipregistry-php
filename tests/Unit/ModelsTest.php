@@ -82,7 +82,7 @@ final class ModelsTest extends TestCase
                 'language' => ['code' => 'en', 'name' => 'English', 'native' => 'English'],
                 'in_eu' => false,
             ],
-            'security' => ['is_vpn' => true, 'is_threat' => true],
+            'security' => ['is_vpn' => true, 'is_threat' => true, 'is_residential_proxy' => true],
             'time_zone' => [
                 'id' => 'America/Los_Angeles',
                 'abbreviation' => 'PST',
@@ -113,6 +113,7 @@ final class ModelsTest extends TestCase
         self::assertTrue($info->security->isVpn);
         self::assertTrue($info->security->isThreat);
         self::assertFalse($info->security->isTor);
+        self::assertTrue($info->security->isResidentialProxy);
         self::assertSame(-28800, $info->timeZone->offset);
         self::assertTrue($info->timeZone->inDaylightSaving);
     }
@@ -125,6 +126,7 @@ final class ModelsTest extends TestCase
         self::assertSame(IpType::Unknown, $info->type);
         self::assertNull($info->connection->asn);
         self::assertFalse($info->connection->isAnycast);
+        self::assertFalse($info->security->isResidentialProxy);
         self::assertNull($info->company->type);
         self::assertNull($info->location->latitude);
         self::assertSame('', $info->location->country->flag->emoji);

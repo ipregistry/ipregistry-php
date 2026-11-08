@@ -32,6 +32,8 @@ final readonly class Security
         public bool $isCloudProvider = false,
         public bool $isProxy = false,
         public bool $isRelay = false,
+        /** Whether the IP address is a node of a residential proxy network. */
+        public bool $isResidentialProxy = false,
         public bool $isTor = false,
         public bool $isTorExit = false,
         public bool $isAnonymous = false,
@@ -52,6 +54,7 @@ final readonly class Security
             isCloudProvider: Hydrator::bool($data, 'is_cloud_provider'),
             isProxy: Hydrator::bool($data, 'is_proxy'),
             isRelay: Hydrator::bool($data, 'is_relay'),
+            isResidentialProxy: Hydrator::bool($data, 'is_residential_proxy'),
             isTor: Hydrator::bool($data, 'is_tor'),
             isTorExit: Hydrator::bool($data, 'is_tor_exit'),
             isAnonymous: Hydrator::bool($data, 'is_anonymous'),
